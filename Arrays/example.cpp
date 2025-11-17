@@ -1,27 +1,25 @@
-#include<iostream>
-#include <vector>
-using namespace std;
+// #include<iostream>
+// using namespace std;
+
+// void printArr(int arr[], int n){
+//     for(int i=0; i<n; i++){
+//         cout<<arr[i]<<", ";
+//     }
+// }
+
+// int createArr(int arr[], int n){
+//     for(int i=0; i<n; i++){
+//         cin>>arr[i];
+//     }
+//     printArr(arr,n);
+//     return 1;
+// }
+
+// int main(){
+//     int arr[6];
+//     int n = sizeof(arr)/sizeof(int);
+//     createArr(arr,n);
+//     return 0;
+// }
 
 
-int main(){
-    // int marks[50];      //initializing array
-    // cout<<sizeof(marks) / sizeof(int)<<endl;
-
-    int n;
-    cout<<"Enter the length of the array: "<<endl;
-    cin>>n;
-    
-    vector<int> marks(n);
-    
-    // taking input values in array
-    for(int i = 0; i<n; i++){
-        cin>>marks[i];
-    }
-
-    // out values of array
-    for(int i = 0; i<n; i++ ){
-        cout<<marks[i]<<",";
-    }
-    
-    return 0;
-}
