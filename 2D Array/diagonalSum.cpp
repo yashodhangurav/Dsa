@@ -19,10 +19,10 @@ int diagonalSum(int mat[][4], int n){
 
     // with O(n) time complexity
     int sum = 0;
-    for(int i = 0; i<n; i++){
-        sum += mat[i][i];
-        if(i != n-i-1){
-            sum += mat[i][n-i-1];
+    for(int i = 0; i<n; i++){           //run only n times
+        sum += mat[i][i];               // as we know that if both i and j same we need to add 
+        if(i != n-i-1){                 // this means i != j value then (it will also remove the common)
+            sum += mat[i][n-i-1];       // mat[i][j]
         }
 
     }
