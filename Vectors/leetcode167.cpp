@@ -1,4 +1,4 @@
-// pair sum
+//------- pair sum
 // two pointer approach
 
 #include<iostream>
@@ -6,7 +6,7 @@
 using namespace std;
 
 vector<int> pairSum(vector<int> arr, int n){
-    int st = 0, end = arr.size()-1;
+    int st = 0, end = arr.size()-1;         //we are taking two varibale at start and end index number
     int currSum = 0;
     vector<int> ans;            //this is created another vector to add the index number which are giving the sum of target    
 

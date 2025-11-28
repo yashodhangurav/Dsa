@@ -1,9 +1,10 @@
 // running sum (important concept)
 
 #include<iostream>
+#include<vector>
 using namespace std;
 
-int runningSum(int arr[], int n){
+int runningSum(int nums[], int n){
     // optimized with less Time complexity - O(n)
 
     int n = nums.size();
