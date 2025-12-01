@@ -25,6 +25,15 @@ class Car{
             *mileage = *original.mileage;
         }
 
+        // destructor for dynamically allocated memory
+        ~Car(){
+            cout<<"Deleting obj \n";
+            if(mileage != NULL){
+                delete mileage;         //deleting / deallocating the heap memory 
+                mileage = NULL;         //explicitly assigned value as null 
+            }
+        } 
+
 };
 
 int main(){
