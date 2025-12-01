@@ -13,9 +13,10 @@ vector<int> plusOne(vector<int>& nums) {
         } 
     }
 
-    if(nums[0]==0){
+    // if the array containing all 9's then we need to increase array size by one and should add 1 in front
+    if(nums[0]==0){                            //if the first element itself is zero that means all elements was 9
         vector<int> res(nums.size()+1, 0);
-        res[0] = 1;
+        res[0] = 1;                         //initialized first element as 1
         return res;
     }
 
