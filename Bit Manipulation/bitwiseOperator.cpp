@@ -11,5 +11,7 @@ int main(){
     cout<<(3 ^ 5 )<<endl;
 // ones Complement
     cout<<(~6)<<endl;
+
+    cout<< (45 | 39) <<endl;
     return 0;
 }
