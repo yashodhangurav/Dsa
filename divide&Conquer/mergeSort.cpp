@@ -4,10 +4,10 @@ using namespace std;
 
 
 void merge(int arr[], int si, int mid, int ei){         //merge 2 sorted arrays time complexity = O(n)
-    vector<int> temp;   //temporary array
+    vector<int> temp;                                   //temporary array
 
-    int i = si;        //iterator for left part
-    int j = mid+1;    //iterator for right part
+    int i = si;                                         //iterator for left part
+    int j = mid+1;                                      //iterator for right part
     //merge 2 sorted arrays
     while(i<=mid && j<=ei){
         if(arr[i] <= arr[j]){
@@ -47,7 +47,7 @@ void  mergeSort(int arr[], int si, int ei){     // O(nlogn)
     mergeSort(arr, mid+1, ei);          //right half
 
     // conquer
-    merge(arr, si, mid, ei);
+    merge(arr, si, mid, ei);            //this  will merge 2 sorted arrays
 }
 
 
@@ -58,6 +58,8 @@ void printArr(int arr[], int n){
     }
     cout<<endl;
 }
+
+
 int main(){
     int arr[6] = {2,5,4,7,1,3};
     int n = 6;
