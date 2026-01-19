@@ -89,8 +89,6 @@ int main(){
 
     sudokuSolver(sudoku, 0,0);      // Fill this function to solve the Sudoku puzzle
 
-    // printSudoku(sudoku);
-
     return 0;
 }
 
