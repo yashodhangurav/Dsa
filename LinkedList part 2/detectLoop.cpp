@@ -82,6 +82,47 @@ bool isCycle(Node* head){
 
     cout<<"cycle doesn't exist! \n";
     return false;
+};
+
+
+// remove cycle from LL
+
+void removeCycle(Node* head){
+    // detect cycle
+    Node* slow =  head;
+    Node* fast = head;
+    bool isCycle = false;
+
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast){
+            cout<<"Cycle is exist!\n";
+            isCycle = true;
+            break;
+        }
+    }
+
+    if(!isCycle){
+        cout<<"cycle doestn't exist! \n";
+        return;
+    }
+
+    slow = head;
+    if(slow == fast){                   //special case
+        while(fast->next != slow){
+            fast = fast->next;
+        }
+        fast->next = NULL; //remove cycle
+    }else{                              //normal work
+        Node* prev = fast;
+        while(slow != fast){
+            slow = slow->next;
+            prev = fast;
+            fast = fast->next;
+        }
+        prev->next = NULL;  //remove cycle
+    }
 }
 
 
@@ -94,7 +135,8 @@ int main(){
 
     li.tail->next = li.head;  //creating a cycle
 
-    isCycle(li.head);
+    removeCycle(li.head);
+    printList(li.head);
 
     return 0;
 }
