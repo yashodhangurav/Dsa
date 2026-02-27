@@ -86,32 +86,21 @@ Node* splitAtMid(Node* head){
 
 // merging two sorted linked lists
 Node* merge(Node* left, Node* right){
-    List ans;
 
-    Node* i = left;
-    Node* j = right;
+    if(left == NULL) return right;
+    if(right == NULL) return left;
 
-    while(i != NULL && j != NULL){
-        if(i->data <= j->data){
-            ans.push_back(i->data);
-            i = i->next;
-        }else{
-            ans.push_back(j->data);
-            j = j->next;
-        }
+    Node* result = NULL;
+
+    if(left->data <= right->data){
+        result = left;
+        result->next = merge(left->next, right);
+    }else{
+        result = right;
+        result->next = merge(left, right->next);
     }
 
-    while(i != NULL){
-        ans.push_back(i->data);
-        i = i->next;
-    }
-
-    while(j != NULL){
-        ans.push_back(j->data);
-        j = j->next;
-    }
-
-    return ans.head;
+    return result;
 }
 
 
