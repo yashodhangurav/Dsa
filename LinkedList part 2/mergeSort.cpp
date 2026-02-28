@@ -121,6 +121,7 @@ Node* mergeSort(Node* head){
 }
 
 
+// to prin ll
 void printList(Node* head){
     Node* temp = head;
     while(temp != NULL){
