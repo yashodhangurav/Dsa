@@ -52,6 +52,10 @@ class Queue{
         bool empty(){
             return currSize == 0;
         }
+
+        void printRear(){
+            cout<<arr[r]<<endl;
+        };
 };
 
 int main(){
@@ -69,5 +73,6 @@ int main(){
     q.push(5);
     cout<<q.front()<<endl;
 
+    q.printRear();
     return 0;
 }
