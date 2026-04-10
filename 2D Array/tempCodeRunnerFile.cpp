@@ -1,0 +1,4 @@
+ow++;
+    scol++;
+    erow--;
+    ecol--;

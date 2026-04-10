@@ -37,6 +37,8 @@ void spiralMatrix(int mat[][4], int n, int m){
     
 }
 
+
+
 int main(){
 int arr[4][4]={{1,2,3,4},
                 {5,6,7,8},
@@ -44,7 +46,7 @@ int arr[4][4]={{1,2,3,4},
                 {13,14,15,16},};
 int n = 4, m=4;
 
-spiralMatrix(arr,n,m);
+// spiralMatrix(arr,n,m);
 
 cout<<endl;
 
@@ -52,7 +54,7 @@ int arr2[3][4]={{1,2,3,4},
                 {5,6,7,8},
                 {9,10,11,12},};
 
- spiralMatrix(arr2,3,4);
+//  spiralMatrix(arr2,3,4);
 
     return 0;
 }
