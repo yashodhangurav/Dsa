@@ -4,17 +4,21 @@ using namespace std;
 
 
 int partition(int arr[], int si, int ei){
-    int i = si-1;                               //starting i = -1
-    int pivot = arr[ei];
+    int i = si+1;
+    int j = ei;
+    int pivot = arr[si];
 
-    for(int j =si; j<ei; j++){
-        if(arr[j]<pivot){
+    while(i>=j){
+        if(pivot > arr[i]){
             i++;
+        }else if(pivot < arr[j]){
+            j--;
+        }else{
             swap(arr[i], arr[j]);
+            i++;
+            j--;
         }
     }
-    i++;
-    swap(arr[i], arr[ei]);
 
     return i;
 }

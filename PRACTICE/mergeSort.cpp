@@ -2,35 +2,31 @@
 #include<vector>
 using namespace std;
 
-// Time complexity of merge sort is O(nlogn) and space complexity is O(n) because of temporary array used in merge function
 
 void merge(int arr[], int si, int mid, int ei){         //merge 2 sorted arrays time complexity = O(n)
+    int i = si;
+    int j = mid+1;
     vector<int> temp;                                   //temporary array
 
-    int i = si;                                         //iterator for left part
-    int j = mid+1;                                      //iterator for right part
-    //merge 2 sorted arrays
     while(i<=mid && j<=ei){
-        if(arr[i] <= arr[j]){
-            temp.push_back(arr[i++]);
-        } else{
+        if(arr[i]>arr[j]){
             temp.push_back(arr[j++]);
+        }else{
+            temp.push_back(arr[i++]);
         }
     }
 
-    // remaining elements of left part
     while(i<=mid){
         temp.push_back(arr[i++]);
     }
-    // remaining elements of right part
     while(j<=ei){
         temp.push_back(arr[j++]);
     }
 
-    // copying temp array to original array
-    for(int i=si, x=0; i<=ei; i++){
-        arr[i] = temp[x++];
-    }
+        // copying temp array to original array
+        for(int i = si, x=0; i<=ei; i++){
+            arr[i] = temp[x++];
+        }
 
 }
 
@@ -38,7 +34,7 @@ void merge(int arr[], int si, int mid, int ei){         //merge 2 sorted arrays 
 // divide and conquer
 void  mergeSort(int arr[], int si, int ei){     // O(nlogn)
 
-    if(si>=ei){         //base case
+    if(si>=ei){
         return;
     }
 
@@ -46,9 +42,9 @@ void  mergeSort(int arr[], int si, int ei){     // O(nlogn)
 
     mergeSort(arr, si, mid);             //left half
     mergeSort(arr, mid+1, ei);          //right half
-
-    // conquer
-    merge(arr, si, mid, ei);            //this  will merge 2 sorted arrays
+    
+    // merge
+    merge(arr, si, mid, ei);
 }
 
 
