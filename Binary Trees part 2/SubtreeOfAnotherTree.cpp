@@ -34,10 +34,12 @@ Node* buildTree(vector<int> nodes){
 bool isIdentical(Node* root1, Node* root2){
     if(root1 == NULL && root2 == NULL){
         return true;
-    }else{
-        if(root1 == NULL || root2 == NULL){
-            return false;
-        }
+    }
+    if(root1 == NULL || root2 == NULL){
+            return false;  
+    }
+    if(root1->data != root2->data){
+        return false;
     }
 
     return isIdentical(root1->left, root2->left) 
@@ -48,11 +50,11 @@ bool isSubTree( Node* root, Node* subRoot){
 
     if(root == NULL && subRoot == NULL){
         return true;
-    }else{
-        if(root == NULL || subRoot == NULL){
-            return false;
-        }
     }
+    if(root == NULL || subRoot == NULL){
+            return false;
+    }
+     
 
     if(root->data == subRoot->data){
         if(isIdentical(root, subRoot)){     // if the current node of the main tree is same as the root of the subtree, then we will check if the two trees are identical or not, if they are identical then we can say that the subtree is present in the main tree and we can return true, otherwise we will continue to check for the left and right subtrees of the main tree.
