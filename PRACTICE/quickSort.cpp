@@ -8,7 +8,7 @@ int partition(int arr[], int si, int ei){
     int j = ei;
     int pivot = arr[si];
 
-    while(i>=j){
+    while(i<= j){
         if(pivot > arr[i]){
             i++;
         }else if(pivot < arr[j]){
@@ -19,8 +19,9 @@ int partition(int arr[], int si, int ei){
             j--;
         }
     }
+    swap(arr[si], arr[j]);
 
-    return i;
+    return j;
 }
 
 
