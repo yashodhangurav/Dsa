@@ -54,6 +54,7 @@ void levelOrder(Node* root){            //O(n) where n is the number of nodes in
         }
         else{
             cout<< currNode->data <<" ";
+            
 
             if(currNode->left != NULL){
                 Q.push(currNode->left);
