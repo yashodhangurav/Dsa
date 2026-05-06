@@ -6,6 +6,7 @@ class Node{
         int data;
         Node* left;
         Node* right;
+
         Node(int data){
             this->data = data;
             left = right = NULL;
@@ -13,34 +14,34 @@ class Node{
 };
 
 
-Node* insert(Node* root, int val){          //O(logn)
+Node* insert(Node* root, int val){
     if(root == NULL){
         root = new Node(val);
         return root;
     }
 
     if(val < root->data){
-        root->left = insert(root->left, val);           //leftSubtree
-    }else{
-        root->right = insert(root->right, val);         //rightSubtree
+        root->left = insert(root->left, val);
+    }
+    else{
+        root->right = insert(root->right, val);
     }
 
     return root;
 }
 
-Node* buildBST(int arr[], int n){               //return the root node thats why return type is Node*
-    Node* root = NULL;                          //initially root assign as a NULL
+
+Node* buildBST(int arr[], int n){
+    Node* root = NULL;
 
     for(int i = 0; i<n; i++){
-        root = insert(root , arr[i]);
+        root = insert(root, arr[i]);
     }
 
     return root;
 }
 
 
-
-// checking the resukt by printing inorder traversal
 
 void inorder(Node* root){
     if(root == NULL){
@@ -48,18 +49,35 @@ void inorder(Node* root){
     }
 
     inorder(root->left);
-    cout<<root->data<<", ";
+    cout<<root->data<<" ";
     inorder(root->right);
 }
 
+
+bool searchBST(Node* root, int key){
+    if(root == NULL){
+        return false;
+    }
+
+    if(root->data == key){
+        return true;
+    }
+    if(key < root->data){
+        return searchBST(root->left, key);
+    }else{
+        return searchBST(root->right, key);
+    }
+
+}
+
+
 int main(){
-    int arr[6] = {5,1,3,4,2,7};
-    int arr2[9] = {8,5,4,2,1,4,10,25,4};
+    int arr[6] = {5,7,4,1,2,6};
 
+    Node* root = buildBST(arr, 6);
 
-    Node* root = buildBST(arr2, 9);
+    // inorder(root);
 
-    inorder(root);
-
+    searchBST(root, 0) ? cout<<"Found" : cout<<"Not Found";
     return 0;
 }
