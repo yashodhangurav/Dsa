@@ -78,6 +78,6 @@ int main(){
 
     // inorder(root);
 
-    searchBST(root, 0) ? cout<<"Found" : cout<<"Not Found";
+    searchBST(root, 0) ? cout<<"Found" : cout<<"Not Found";                 //ternary operator
     return 0;
 }
