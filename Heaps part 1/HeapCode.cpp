@@ -30,7 +30,7 @@ class Heap{
             int left = 2*1 + 1;
             int right = 2*i + 2;
 
-            int maxi = i;  // assume parent is maximum
+            int maxi = i;                               // assume parent is maximum
             if(left < v.size() && v[left] > v[maxi]){
                 maxi = left;
             }
