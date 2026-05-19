@@ -32,7 +32,7 @@ void nearByCars(vector<pair<int,int>> pos, int K){
 
 
     for(int i = 0; i<K; i++){
-        cout<<"Car: "<<pq.top().idx<<endl;
+        cout<<pq.top().idx<<endl;
         pq.pop();
     }
 }
