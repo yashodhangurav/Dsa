@@ -7,7 +7,7 @@ void printArr(int *arr, int n){
     }
 };
 
-// ascending order
+// ascending orde
 // void bubbleSort(int *arr, int n){
 //     for(int i=0; i<n-1; i++){           // outer loop is also running 0 to till n-2
 //         for(int j=0; j<n-i-1; j++){     //find the relation of outer loop with the inner loop and find formula of range of inner loop
