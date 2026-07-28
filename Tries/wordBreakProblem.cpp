@@ -1,7 +1,9 @@
 #include<iostream>
 #include<vector>
+#include<string>
 #include<unordered_map>
 using namespace std;
+
 
 class Node{
     public:
@@ -45,16 +47,41 @@ class Trie{
         }
 };
 
-int main(){
 
-    vector<string> words = {"the", "a", "there", "their", "any", "there"};
-    Trie trie;
 
-    for(int i = 0; i<words.size(); i++){
-        trie.insert(words[i]);
-        
+
+
+
+bool helper(Trie &trie, string key){
+
+    if(key.size() == 0){
+        return true;
     }
-    cout<<trie.search("yash")<<endl;
-    
+
+    for(int i = 0; i<key.size(); i++){
+        string first = key.substr(0,i+1);
+        string second  = key.substr(i+1);
+
+        if(trie.search(first) && helper(trie, second)){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool wordBreak(vector<string> dict, string key){
+    Trie trie;
+    for(int i = 0; i<dict.size(); i++){
+        trie.insert(dict[i]);
+    }
+    return helper(trie, key);
+}
+
+int main(){
+    vector<string> dict = {"i", "like", "sam", "samsung", "mobile", "ice"};
+    string key = "ilikesamsung";
+
+    cout<< wordBreak(dict, key)<<endl;
+
     return 0;
 }
