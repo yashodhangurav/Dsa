@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-#include<string>
 #include<unordered_map>
 using namespace std;
 
@@ -45,36 +44,41 @@ class Trie{
            return temp->endOfWord;
         }
 
-        int countHelper(Node* root){
-            int ans = 0;
-            for(pair<char, Node*> children : root->children){
-                ans += countHelper(children.second);
+        void longestWordHelper(Node* root, string &ans, string temp){
+            for(pair<char,Node*> child : root->children){
+                if(child.second->endOfWord){
+                    temp += child.first;
+
+                    if((temp.size() == ans.size() && temp < ans) || (temp.size() > ans.size())){
+                        ans = temp;
+                    }
+                    longestWordHelper(child.second,ans,temp);
+                    temp = temp.substr(0,temp.size()-1);
+                }
             }
-            return ans + 1;
         }
 
-        int countNodes(){                           ///we want recursive function and root is private member so we will use the helper function
-            return countHelper(root);
+        string longestWordWithEOW(){
+            string ans = "";
+            longestWordHelper(root, ans, "");
+            return ans;
         }
 };
 
 
-int countUniqueSubstring(string str){
+string longestWordWithPrefix(vector<string> dict){
     Trie trie;
-
-    for(int i = 0; i<str.size(); i++){
-        string suffix = str.substr(i);
-        trie.insert(suffix);
+    for(int i = 0; i<dict.size(); i++){
+        trie.insert(dict[i]);
     }
-
-    return trie.countNodes();                       //root is private member so we will use helper for countNodes function
+    return trie.longestWordWithEOW();
 }
-
 
 int main(){
 
-    string str = "ababa";
-
-    cout<< countUniqueSubstring(str)<<endl;
+    vector<string> dict = {"a", "banana", "app", "appl", "ap", "apply", "apple"};
+    
+    cout<<longestWordWithPrefix(dict);
+    
     return 0;
 }
