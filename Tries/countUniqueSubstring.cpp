@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<string>
 #include<unordered_map>
 using namespace std;
 
@@ -44,32 +45,36 @@ class Trie{
            return temp->endOfWord;
         }
 
-        bool startsWith(string prefix){
-            Node* temp = root;
-            for(int i = 0; i<prefix.size(); i++){
-                if(temp->children.count(prefix[i])){
-                    temp = temp->children[prefix[i]];
-                }else{
-                    return false;
-                }
+        int countHelper(Node* root){
+            int ans = 0;
+            for(pair<char, Node*> children : root->children){
+                ans += countHelper(children.second);
             }
-            return true;
+            return ans + 1;
+        }
+
+        int countNodes(){
+            return countHelper(root);
         }
 };
 
 
+int countUniqueSubstring(string str){
+    Trie trie;
+
+    for(int i = 0; i<str.size(); i++){
+        string suffix = str.substr(i);
+        trie.insert(suffix);
+    }
+
+    return trie.countNodes();
+}
 
 
 int main(){
 
-    vector<string> words = {"apple", "app", "women", "man", "mango"};
-    Trie trie;
+    string str = "ababa";
 
-    for(int i = 0; i<words.size(); i++){
-        trie.insert(words[i]);
-        
-    }
-    cout<<trie.startsWith("yash")<<endl;
-    
+    cout<< countUniqueSubstring(str)<<endl;
     return 0;
-}     
+}
