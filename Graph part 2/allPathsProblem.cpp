@@ -1,5 +1,6 @@
 
 #include<iostream>
+#include<string>
 #include<vector>
 #include<list>
 #include<queue>
@@ -36,33 +37,31 @@ class Graph{
             }
         }
 
-        bool isBipartite(){
-            
-            queue<int> q;
-            vector<int> colour(V,-1);
-            q.push(0);
-           
-            colour[0] = 0;
+        void allPathHelper(int src, int dest, vector<bool> &vis , string &path){
 
-            while(q.size() > 0){
-                int curr = q.front();
-                q.pop();
+            if(src == dest){
+                cout<<path<<dest<<endl;
+                return;
+            }
 
-                list<int> neighbours = l[curr];
-                for(int v : neighbours){
-                    if(colour[v] == -1){                //umvisited
-                        q.push(v);
-                        colour[v] = !colour[curr];
-                    }else{
-                        if(colour[v] == colour[curr]){
-                            return false;
-                        }
-                    }
+            vis[src] = true;
+            path += to_string(src);
+
+            list<int> neighbours = l[src];
+            for(int v: neighbours){
+                if(!vis[v]){
+                    allPathHelper(v,dest,vis, path);
                 }
             }
-            return true;
+            path = path.substr(0, path.size()-1);
+            vis[src] = false;
         }
 
+        void allPath(int src, int dest){
+            vector<bool> vis(V, false);
+            string path = "";
+            allPathHelper(src,dest,vis,path);
+        }
         
 };
 
@@ -70,18 +69,20 @@ class Graph{
 int main(){
 
     //directed graph
-    Graph graph(7);              //false becouse we want to create directed graph
+    Graph graph(7, false);              //false becouse we want to create directed graph
 
-    graph.addEdge(0,1);
-    graph.addEdge(1,3);
-    graph.addEdge(3,2);
-    graph.addEdge(2,0);
-    // graph.addEdge(2,0);
+    graph.addEdge(5,2);
+    graph.addEdge(2,3);
+    graph.addEdge(5,0);
+    graph.addEdge(0,3);
+    graph.addEdge(3,1);
+    graph.addEdge(4,0);
+    graph.addEdge(4,1);
 
         // graph.print();
     
-
-    cout<<graph.isBipartite();
+    // cout<<graph.isCycleDir();
+    graph.allPath(5,1);
 
     return 0;
 }
