@@ -1,0 +1,125 @@
+// #include<iostream>
+// #include<vector>
+// #include<list>
+// using namespace std;
+
+// class Graph{
+//     int V;              //number of vertices
+//     list<int> * l;       //l will store the different list's of integers (just like dinamic array int * arr)
+
+//     public:
+//     Graph(int V){
+//         this->V = V;
+//         l = new list<int> [V];          // new list of size of V , just like (arr = new int[V])
+//     }
+
+//     void addEdge(int u, int v){
+//         l[u].push_back(v);
+//         l[v].push_back(u);
+//     }
+
+//     void print(){
+//         for(int u = 0; u<V; u++){
+//             list<int> neighbors = l[u];
+//             cout<<u<<" : "; 
+//             for(int v : neighbors){
+//                 cout<< v <<", ";
+//             }
+//             cout<<endl;
+//         }
+//     }
+// };
+
+
+// int main(){
+
+//     Graph graph(5);
+
+//     graph.addEdge(0,1);
+//     graph.addEdge(1,2);
+//     graph.addEdge(2,3);
+//     graph.addEdge(3,1);
+//     graph.addEdge(2,4);
+
+//     graph.print();
+
+//     return 0;
+// }
+
+
+
+// -------------------------for weighted graph
+
+
+#include<iostream>
+#include<vector>
+#include<list>
+#include<queue>
+using namespace std;
+
+
+class Edge{
+    public:
+        int v;
+        int wt;
+
+        Edge(int v, int wt){
+            this->v = v;
+            this->wt = wt;
+        }
+};
+
+void dijkstras(int src, vector<vector<Edge>> &graph, int V){            // O((V+E)*log V)
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > pq;   //creating min heap with pairs (just like priority_queue<int , vector<int>, greater<int>> pq; )
+    //now we need to sorting based on dist[v] so pair(dist[v],v)
+    vector<int> dist(V,INT_MAX);
+    pq.push(make_pair(0,src));
+    dist[src] = 0;
+    
+    while(pq.size() > 0){
+        int u = pq.top().second;
+        pq.pop();
+
+        vector<Edge> edges = graph[u];
+        for(Edge e :edges){
+            if(dist[e.v] > dist[u] + e.wt){
+                dist[e.v] = dist[u] + e.wt;
+                pq.push(make_pair(dist[e.v], e.v));
+            }
+        }
+    }
+
+    for(int d : dist){
+        cout<<d<<" ";
+    }
+    cout<<endl;
+}
+
+
+int main() {
+    int V = 6;
+
+    // Adjacency list
+    vector<vector<Edge>> graph(V);
+
+    // Adding 6 edges (u -> v with weight)
+    graph[0].push_back(Edge(1, 2));             //edge --> (destination, weight)
+    graph[0].push_back(Edge(2, 4));
+
+    graph[1].push_back(Edge(2, 1));
+    graph[1].push_back(Edge(3, 7));
+
+    graph[2].push_back(Edge(4, 3));
+
+    graph[3].push_back(Edge(5, 1));
+
+    graph[4].push_back(Edge(3, 2));
+    graph[4].push_back(Edge(5, 5));
+
+    dijkstras(0,graph,V);
+
+    return 0;
+}
+
+
+
