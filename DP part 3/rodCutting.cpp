@@ -9,11 +9,10 @@ int rodCutting(vector<int> price, vector<int> length, int rodLength){
 
     for(int i = 1; i<n+1; i++){
         for(int j = 1; j<rodLength+1; j++){
-            if(length[i-1] <= j){
+            if(length[i-1] <= j)
                 dp[i][j] = max(price[i-1]+dp[i][j-length[i-1]], dp[i-1][j]);
-            }else{
+            else
                 dp[i][j] = dp[i-1][j];
-            }
         }
     }
     return dp[n][rodLength];
