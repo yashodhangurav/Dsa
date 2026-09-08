@@ -23,7 +23,7 @@ int lcsRec(string str1, string str2){
 }
 
 
-int lcsMem(string str1, string str2, vector<vector<int>> &dp){
+int lcsMem(string str1, string str2, vector<vector<int>> &dp){   //O(n*m)
     if(str1.size() == 0 || str2.size() == 0){
         return 0;
     }
