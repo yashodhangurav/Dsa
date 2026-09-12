@@ -21,6 +21,17 @@ int lcSubstring(string str1, string str2){
            
         }
     }
+
+    cout<<endl;
+    cout<<"DP matrix : "<<endl;
+    for(int i = 0; i<n+1; i++){
+        for(int j = 1; j<m+1; j++){
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+    cout<<"Final ans is : "<<" ";
     return ans;
 }
 
